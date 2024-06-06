@@ -1,3 +1,4 @@
+/*
 const puppeteer = require('puppeteer');
 
 const getProducts = async (req, res) => {
@@ -52,3 +53,8 @@ const getProducts = async (req, res) => {
 };
 
 export default getProducts;
+*/
+
+export default function handler() {
+  res.status(200).json({ a: 'a' });
+}
