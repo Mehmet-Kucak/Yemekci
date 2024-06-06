@@ -1,0 +1,98 @@
+.header {
+    height: 50px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #ff4b50;
+    color: white;
+
+    border-radius: -10px;
+
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.header_button {
+    height: 100%;
+    background:none;
+    border: none;
+}
+
+.header_button img{
+    height: 100%;
+}
+
+.main {
+    padding: 40px;
+    padding-top: 30px;
+    display: flex;
+    justify-content:flex-start;
+    align-items:center;
+    flex-direction: column;
+
+    text-align: center;
+    width: 100vw;
+    height: calc(100vh - 130px);
+    overflow-y: scroll;
+}
+
+.logo {
+    height: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    color: #545454;
+}
+
+.title span {
+    color: #ff4b50;
+    font-size: 24pt;
+}
+
+.search_button {
+    padding: 15px 20px;
+    color: white;
+    background-color: #ff4b50;
+    border: none;
+    border-radius: 40px;
+    font-size: 18px;
+}
+
+.loader_text{
+    color: #ff4b50;
+}
+
+.loader {
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side,#ff4b50 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+}
+
+.product_container{
+    padding: 20px 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
