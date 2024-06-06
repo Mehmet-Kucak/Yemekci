@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@turf/turf": "^6.5.0",
+    "firebase": "^10.12.2",
     "next": "14.2.3",
+    "puppeteer": "^22.10.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1"
