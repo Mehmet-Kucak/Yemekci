@@ -5,19 +5,27 @@ import BottomNavbar from '@components/BottomNavbar';
 import StaticMap from '@/components/StaticMap';
 import ProductCard from '@/components/ProductCard';
 import toast from 'react-hot-toast';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query } from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig'
 import PlaceCard from '@/components/PlaceCard';
 import Map from '@/components/DynamicMap';
 
+type DocumentData = {
+  id: string;
+  name: string;
+  province: string;
+  img: string;
+};
+
 const Home = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<DocumentData[]>([]);
   const [position, setPosition] = useState<[number, number]>([0, 0]); // [lat, lng
   const [city, setCity] = useState<[string,string,string]>(['','','']); // [id, province, error]
   const [searchType, setSearchType] = useState<number>(0); // 0: not searchType, 1: searchType with location, 2: searcing without location
   const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products, 3: searching images
   const [selectedProduct, setSelectedProduct] = useState<number>(-1);
-
+  const [selectedPlace, setSelectedPlace] = useState<number>(-1);
+  
   const getProducts = async () => {
     if (navigator.geolocation) {
       try {
@@ -37,14 +45,22 @@ const Home = () => {
           await setData([]);
           await setSelectedProduct(-1);
           try {
-            const querySnapshot = await getDocs(collection(db, responseData.id));
-            const docs = querySnapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }));
-            await setData(docs);
+            const q = query(collection(db, responseData.id));
+
+            const querySnapshot = await getDocs(q);
+            const docs = querySnapshot.docs.map((doc) => {
+              const data = doc.data();
+              return {
+                id: doc.id,
+                name: data.name,
+                province: data.province,
+                img: data.img,
+              };
+            });
+
+            setData(docs);
           } catch (error) {
-            await console.error('Error fetching data:', error);
+            console.error("Error fetching documents: ", error);
           }
         } else {
           await setCity(['', '', responseData.error]);
@@ -67,6 +83,8 @@ const Home = () => {
   };
   
   const searchButton = () => {
+    setSelectedProduct(-1);
+    setSelectedPlace(-1);
     setSearchType(1);
     setSearchState(1);
     getProducts();
@@ -78,6 +96,11 @@ const Home = () => {
 
   const backButton = () => {
     setSelectedProduct(-1);
+    setSelectedPlace(-1);
+  }
+
+  const placeButton = (index: number) => {
+    setSelectedPlace(index);
   }
 
   return (     
@@ -94,7 +117,7 @@ const Home = () => {
             <button className={styles.header_button}><img src="/person_icon.png" alt="" /></button>
       </header>
         <main className={styles.main}>
-            {selectedProduct === -1 && <>
+            {selectedProduct === -1 && selectedPlace === -1 && <>
               <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2>
               <StaticMap city={city[0].toString()}/>
               {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Konumu Tara</button>}
@@ -107,7 +130,7 @@ const Home = () => {
                 })}
               </div>
             </>}
-            {selectedProduct !== -1 && <>
+            {selectedProduct !== -1 && selectedPlace === -1 && <>
               <h2 className={styles.title}><span>{data[selectedProduct].name}</span><br/>{data[selectedProduct].province}</h2>
 
               <div className={styles.ai}>
@@ -116,16 +139,18 @@ const Home = () => {
               </div>
               <hr />
               <div className={styles.places_container}>                
-                <PlaceCard name="Ortaklar Cop Sis Kofte Kahvalti Gozleme" img="/restaurant_placeholder.jpg" stars={3.9} reviews={13} distance={2.7} />
-                <PlaceCard name="Meşhur ortaklar çöp şiş servet usta" img="/restaurant_placeholder.jpg" stars={4.3} reviews={467} distance={2.6} />
-                <PlaceCard name="Efe Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.3} reviews={1349} distance={2.6} />
-                <PlaceCard name="Kalyon Lazutti Çöpşiş" img="/restaurant_placeholder.jpg" stars={4.4} reviews={1292} distance={2.6} />
-                <PlaceCard name="Park Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.0} reviews={110} distance={1.2} />
-                <PlaceCard name="Yörük Ali Baba Çöp Şiş" img="/restaurant_placeholder.jpg" stars={3.6} reviews={46} distance={0.8} />
+                <PlaceCard name="Ortaklar Cop Sis Kofte Kahvalti Gozleme" img="/restaurant_placeholder.jpg" stars={3.9} reviews={13} distance={2.7} on_click={() => {placeButton(0)}}/>
+                <PlaceCard name="Meşhur ortaklar çöp şiş servet usta" img="/restaurant_placeholder.jpg" stars={4.3} reviews={467} distance={2.6} on_click={() => {placeButton(1)}}/>
+                <PlaceCard name="Efe Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.3} reviews={1349} distance={2.6} on_click={() => {placeButton(2)}}/>
+                <PlaceCard name="Kalyon Lazutti Çöpşiş" img="/restaurant_placeholder.jpg" stars={4.4} reviews={1292} distance={2.6} on_click={() => {placeButton(3)}}/>
+                <PlaceCard name="Park Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.0} reviews={110} distance={1.2} on_click={() => {placeButton(4)}}/>
+                <PlaceCard name="Yörük Ali Baba Çöp Şiş" img="/restaurant_placeholder.jpg" stars={3.6} reviews={46} distance={0.8} on_click={() => {placeButton(5)}}/>
               </div>
-              {/*<div className={styles.map_container} style={{height : '500px'}}>
-                <Map start={position} end={position}/>
-              </div>*/}
+            </>}
+            {selectedPlace !== -1 && <>
+              <div className={styles.map_container}>
+                <Map start={[position[1], position[0]]} end={[27.5065, 37.8839]}/>
+              </div>
             </>}
         </main>
             <BottomNavbar 

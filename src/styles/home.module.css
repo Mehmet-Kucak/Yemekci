@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    background-color: #ff4b50;
+    background-color: #f00;
     color: white;
 
     border-radius: -10px;
@@ -51,27 +51,27 @@
 }
 
 .title span {
-    color: #ff4b50;
+    color: #f00;
     font-size: 24pt;
 }
 
 .search_button {
     padding: 15px 20px;
     color: white;
-    background-color: #ff4b50;
+    background-color: #f00;
     border: none;
     border-radius: 40px;
     font-size: 18px;
 }
 
 .loader_text{
-    color: #ff4b50;
+    color: #f00;
 }
 
 .loader {
     width: 60px;
     aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side,#ff4b50 90%,#0000);
+    --_g: no-repeat radial-gradient(circle closest-side,#f00 90%,#0000);
     background: 
       var(--_g) 0%   50%,
       var(--_g) 50%  50%,
@@ -100,7 +100,7 @@
 .ai{
     padding: 20px;
 
-    background-color: #ff4b50;
+    background-color: #f00;
     border-radius: 20px;
     color: white;
 }
@@ -117,6 +117,10 @@
 }
 
 .map_container{
-    width: 100%;
-    height: 100vh;
+    width: calc(100% + 80px);
+    height: calc(100% + 100px);
+    margin-top: -30px;
+    margin-right: -40px;
+    margin-bottom: -40px;
+    margin-left: -40px;
 }

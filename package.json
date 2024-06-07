@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.3.1",
     "@turf/turf": "^6.5.0",
+    "@types/react-map-gl": "^6.1.6",
     "firebase": "^10.12.2",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "mapbox-gl": "^3.4.0",
     "next": "14.2.3",
     "puppeteer": "^22.10.0",
@@ -21,8 +25,7 @@
     "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
-    "@mapbox/mapbox-gl-directions": "^4.3.1",
-    "@types/mapbox-gl": "^3.1.0",
+    "@types/leaflet": "^1.9.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

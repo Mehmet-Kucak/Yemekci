@@ -26,6 +26,7 @@
       "@assets/*": ["./src/assets/*"],
       "@public/*": ["./public/*"],
       "@config/*": ["./src/config/*"],
+      "@mapbox/mapbox-gl-directions": ["./types/mapbox-gl-directions.d.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
