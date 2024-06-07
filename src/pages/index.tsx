@@ -8,9 +8,11 @@ import toast from 'react-hot-toast';
 import { collection, getDocs } from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig'
 import PlaceCard from '@/components/PlaceCard';
+import Map from '@/components/DynamicMap';
 
 const Home = () => {
   const [data, setData] = useState<any[]>([]);
+  const [position, setPosition] = useState<[number, number]>([0, 0]); // [lat, lng
   const [city, setCity] = useState<[string,string,string]>(['','','']); // [id, province, error]
   const [searchType, setSearchType] = useState<number>(0); // 0: not searchType, 1: searchType with location, 2: searcing without location
   const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products, 3: searching images
@@ -25,6 +27,7 @@ const Home = () => {
         const lat = await position.coords.latitude;
         const lng = await position.coords.longitude;
 
+        await setPosition([lat, lng]);
         const response = await fetch(`/api/getLocation?lat=${lat}&lng=${lng}`);
         const responseData = await response.json();
 
@@ -113,11 +116,16 @@ const Home = () => {
               </div>
               <hr />
               <div className={styles.places_container}>                
-                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={2.75} />
-                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
-                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
-                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
+                <PlaceCard name="Ortaklar Cop Sis Kofte Kahvalti Gozleme" img="/restaurant_placeholder.jpg" stars={3.9} reviews={13} distance={2.7} />
+                <PlaceCard name="Meşhur ortaklar çöp şiş servet usta" img="/restaurant_placeholder.jpg" stars={4.3} reviews={467} distance={2.6} />
+                <PlaceCard name="Efe Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.3} reviews={1349} distance={2.6} />
+                <PlaceCard name="Kalyon Lazutti Çöpşiş" img="/restaurant_placeholder.jpg" stars={4.4} reviews={1292} distance={2.6} />
+                <PlaceCard name="Park Çöp Şiş" img="/restaurant_placeholder.jpg" stars={4.0} reviews={110} distance={1.2} />
+                <PlaceCard name="Yörük Ali Baba Çöp Şiş" img="/restaurant_placeholder.jpg" stars={3.6} reviews={46} distance={0.8} />
               </div>
+              {/*<div className={styles.map_container} style={{height : '500px'}}>
+                <Map start={position} end={position}/>
+              </div>*/}
             </>}
         </main>
             <BottomNavbar 

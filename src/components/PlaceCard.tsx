@@ -6,6 +6,7 @@ interface PlaceCardProps {
     name: string;
     img: string;
     stars: number;
+    reviews: number;
     distance: number;
     on_click?: () => void;
 }
@@ -18,7 +19,7 @@ const PlaceCard: React.FC<PlaceCardProps> = (props) => {
                 <h4>{props.name}</h4>
                 <div className={styles.star} >
                     <img src="/star_icon.svg" alt="" />
-                    <span>{props.stars}</span>
+                    <span>{props.stars}({props.reviews})</span>
                 </div>
             </div>
             <img src={props.img} alt={props.name} className={styles.img}></img>
