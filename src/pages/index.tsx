@@ -7,13 +7,14 @@ import ProductCard from '@/components/ProductCard';
 import toast from 'react-hot-toast';
 import { collection, getDocs } from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig'
-import { set } from 'firebase/database';
+import PlaceCard from '@/components/PlaceCard';
 
 const Home = () => {
   const [data, setData] = useState<any[]>([]);
   const [city, setCity] = useState<[string,string,string]>(['','','']); // [id, province, error]
   const [searchType, setSearchType] = useState<number>(0); // 0: not searchType, 1: searchType with location, 2: searcing without location
   const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products, 3: searching images
+  const [selectedProduct, setSelectedProduct] = useState<number>(-1);
 
   const getProducts = async () => {
     if (navigator.geolocation) {
@@ -31,6 +32,7 @@ const Home = () => {
           await setCity([responseData.id, responseData.province, 'success']);
           await setSearchState(2);
           await setData([]);
+          await setSelectedProduct(-1);
           try {
             const querySnapshot = await getDocs(collection(db, responseData.id));
             const docs = querySnapshot.docs.map((doc) => ({
@@ -67,6 +69,14 @@ const Home = () => {
     getProducts();
   }
 
+  const productButton = (product: number) => {
+    setSelectedProduct(product);
+  }
+
+  const backButton = () => {
+    setSelectedProduct(-1);
+  }
+
   return (     
     <>      
         <Head>
@@ -76,23 +86,39 @@ const Home = () => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>     
       <header className={styles.header}>
-            <button className={styles.header_button}><img src="/back_icon.png" alt="" /></button>         
+            <button onClick={backButton} className={styles.header_button}><img src="/back_icon.png" alt="" /></button>         
             <img src="/YemekCi.png" alt="yemekci" className={styles.logo}/>
             <button className={styles.header_button}><img src="/person_icon.png" alt="" /></button>
       </header>
         <main className={styles.main}>
-            <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2>
-            <StaticMap city={city[0].toString()}/>
-            {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Konumu Tara</button>}
-            {searchType !== 0 && <div className={styles.loader}>&nbsp;</div>}
-            {searchType === 1 && searchState === 1 && <h3 className={styles.loader_text}>Konumunuz Taranıyor</h3>}
-            {searchType === 1 && searchState === 2 && <h3 className={styles.loader_text}>Çevrenizdeki Ürünlere Ulaşılıyor</h3>}
-            <div className={styles.product_container}>
-            {data.map((product, index) => {
-              return (<ProductCard img={product.img} name={product.name} key={index}/>)
-              })}
-            </div>
+            {selectedProduct === -1 && <>
+              <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2>
+              <StaticMap city={city[0].toString()}/>
+              {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Konumu Tara</button>}
+              {searchType !== 0 && <div className={styles.loader}>&nbsp;</div>}
+              {searchType === 1 && searchState === 1 && <h3 className={styles.loader_text}>Konumunuz Taranıyor</h3>}
+              {searchType === 1 && searchState === 2 && <h3 className={styles.loader_text}>Çevrenizdeki Ürünlere Ulaşılıyor</h3>}
+              <div className={styles.product_container}>
+              {data.map((product, index) => {
+                return (<ProductCard img={product.img} name={product.name} key={index} on_click={() => {productButton(index)}}/>)
+                })}
+              </div>
+            </>}
+            {selectedProduct !== -1 && <>
+              <h2 className={styles.title}><span>{data[selectedProduct].name}</span><br/>{data[selectedProduct].province}</h2>
 
+              <div className={styles.ai}>
+                <h3>{data[selectedProduct].name} Yemeği Hakkında Bilgiler</h3><br/>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore incidunt accusamus voluptatem corporis autem. Delectus, corporis vitae. Aut, consequatur nesciunt. Eligendi ipsum quaerat laboriosam veritatis sit itaque officia iusto iste?</p>
+              </div>
+              <hr />
+              <div className={styles.places_container}>                
+                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={2.75} />
+                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
+                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
+                <PlaceCard name="Restoran 1" img="/placeholder.png" stars={4.3} distance={5} />
+              </div>
+            </>}
         </main>
             <BottomNavbar 
               onHomeClick={() => {toast.success("Home")}} 

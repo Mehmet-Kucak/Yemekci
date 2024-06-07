@@ -96,3 +96,22 @@
     flex-wrap: wrap;
     gap: 20px;
 }
+
+.ai{
+    padding: 20px;
+
+    background-color: #ff4b50;
+    border-radius: 20px;
+    color: white;
+}
+
+.places_container{
+    padding: 20px 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
