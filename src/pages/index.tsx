@@ -5,7 +5,7 @@ import BottomNavbar from '@components/BottomNavbar';
 import StaticMap from '@/components/StaticMap';
 import ProductCard from '@/components/ProductCard';
 import toast from 'react-hot-toast';
-import { collection, getDocs, query } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import {GetUserData, auth, db, AddToFavourites, RemoveFromFavourites} from '@/config/firebaseConfig'
 import PlaceCard from '@/components/PlaceCard';
 import Map from '@/components/DynamicMap';
@@ -66,8 +66,16 @@ const Home = () => {
           await setSelectedProduct(-1);
           await setSelectedPlace(-1);
 
+          const excludedProductGroups = [
+            "Diğer ürünler",
+            "Dokumalar",
+            "Halılar ve kilimler",
+            "Halılar, kilimler ve dokumalar dışında kalan el sanatı ürünleri",
+            "sanatı ürünleri"
+          ];
+
           try {
-            const q = query(collection(db, responseData.id));
+            const q = query(collection(db, responseData.id),where("productGroup", "not-in", excludedProductGroups));  
 
             const querySnapshot = await getDocs(q);
             const docs = querySnapshot.docs.map((doc) => {
