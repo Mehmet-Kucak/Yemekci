@@ -25,10 +25,10 @@ const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearc
         <img src="/location_icon.png" alt="location"/>
       </button>
 
-      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onFavsClick}>
+      <button className={`${styles.link} ${active === 3 ? styles.active : ''}`} onClick={onFavsClick}>
         <img src="/fullstar_white_icon.svg" alt="favs"/>
       </button>
-      <button className={`${styles.link} ${active === 3 ? styles.active : ''}`} onClick={onEUClick}>
+      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onEUClick}>
         <img src="/European_stars.png" alt="EU"/>
       </button>
     </nav>
