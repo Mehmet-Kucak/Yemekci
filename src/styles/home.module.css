@@ -23,6 +23,10 @@
     height: 100%;
 }
 
+.logo {
+    height: 100%;
+}
+
 .main {
     padding: 40px;
     padding-top: 30px;
@@ -37,9 +41,6 @@
     overflow-y: scroll;
 }
 
-.logo {
-    height: 100%;
-}
 
 .title {
     text-align: center;
@@ -123,4 +124,20 @@
     margin-right: -40px;
     margin-bottom: -40px;
     margin-left: -40px;
+}
+
+.city_dropdown{
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+
+    border: #aaa 1px solid;
+}
+
+.city_dropdown:focus{
+    outline: none;
 }

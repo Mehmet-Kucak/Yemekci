@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
+  z-index: 100;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
 
   height: 80px;
@@ -51,6 +52,9 @@
 }
 .link p{
   font-size: 12px;
+}
+.active > img{
+  filter: drop-shadow(0 0 6px #000);
 }
 
 .center {

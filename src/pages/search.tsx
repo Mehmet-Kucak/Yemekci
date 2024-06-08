@@ -9,7 +9,9 @@ import { collection, getDocs, query } from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig'
 import PlaceCard from '@/components/PlaceCard';
 import Map from '@/components/DynamicMap';
+import cityData from '@public/TurkeyProvinces.json'
 import { useRouter } from 'next/router';
+
 
 type DocumentData = {
   id: string;
@@ -20,10 +22,10 @@ type DocumentData = {
 
 const Home = () => {
   const [data, setData] = useState<DocumentData[]>([]);
-  const [position, setPosition] = useState<[number, number]>([0, 0]); // [lat, lng
-  const [city, setCity] = useState<[string,string,string]>(['','','']); // [id, province, error]
+  const [position, setPosition] = useState<[number, number]>([0, 0]); // [lat, lng]
+  const [city, setCity] = useState<[string,string,string]>(['01','','']); // [id, province, error]
   const [searchType, setSearchType] = useState<number>(0); // 0: not searchType, 1: searchType with location, 2: searcing without location
-  const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products, 3: searching images
+  const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products
   const [selectedProduct, setSelectedProduct] = useState<number>(-1);
   const [selectedPlace, setSelectedPlace] = useState<number>(-1);
   const router = useRouter();
@@ -38,46 +40,37 @@ const Home = () => {
         const lng = await position.coords.longitude;
 
         await setPosition([lat, lng]);
-        const response = await fetch(`/api/getLocation?lat=${lat}&lng=${lng}`);
-        const responseData = await response.json();
+        
+        await setSearchState(2);
+        await setData([]);
+        await setSelectedProduct(-1);
+        await setSelectedPlace(-1);
 
-        if (response.ok) {
-          await setCity([responseData.id, responseData.province, 'success']);
-          await setSearchState(2);
-          await setData([]);
-          await setSelectedProduct(-1);
-          await setSelectedPlace(-1);
-
-          try {
-            const q = query(collection(db, responseData.id));
-
-            const querySnapshot = await getDocs(q);
-            const docs = querySnapshot.docs.map((doc) => {
+        try {
+          const q = query(collection(db, city[0]));  
+          const querySnapshot = await getDocs(q);
+          const docs = querySnapshot.docs.map((doc) => {
               const data = doc.data();
               return {
-                id: doc.id,
-                name: data.name,
-                province: data.province,
-                img: data.img,
+              id: doc.id,
+              name: data.name,
+              province: data.province,
+              img: data.img,
               };
-            });
+          });
 
-            setData(docs);
+          setData(docs);
           } catch (error) {
             console.error("Error fetching documents: ", error);
           }
-        } else {
-          await setCity(['', '', responseData.error]);
-          await console.error(responseData.error);
-          await toast.error(responseData.error);
         }
-      } catch (err: any) {
-        await setCity(['', '', err.message]);
-        await console.error(err.message);
-        await toast.error(err.message);
+            catch (err: any) {
+            await setCity(['01', '', err.message]);
+            await console.error(err.message);
+            await toast.error(err.message);
       }
     } else {
-      setCity(['', '', 'Geolocation is not supported']);
+      setCity(['01', '', 'Geolocation is not supported']);
       console.error('Geolocation is not supported by this browser.');
       toast.error('Bu tarayıcı konum servislerini desteklememektedir.');
     }
@@ -114,13 +107,18 @@ const Home = () => {
   }
 
   const profileButton = () => {
-    router.push('/profile');
+      router.push('/profile');
+  }
+
+  const onCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCity = cityData.find(city => city.id.toString() === event.target.value);
+    setCity([String(selectedCity?.id.toString()).padStart(2, '0') || '', selectedCity?.name || '', 'success']);
   }
 
   return (     
     <>      
         <Head>
-            <title>YemekCİ</title>        
+            <title>YemekCİ|Ara</title>        
             <meta name="description" content="Coğrafi işaretlere kolaylıkla ulaşın" />        
             <link rel="icon" href="/vercel.svg" />        
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -134,7 +132,12 @@ const Home = () => {
             {selectedProduct === -1 && selectedPlace === -1 && <>
               <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2>
               <StaticMap city={city[0].toString()}/>
-              {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Konumu Tara</button>}
+              <select id="Cities" name="Cities" className={styles.city_dropdown} onChange={onCityChange}>
+                {cityData.map((city, index) => {
+                    return(<option value={city.id} key={index}>{city.name}</option>)
+                }, [])}
+              </select>
+              {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Ürünleri Ara</button>}
               {searchType !== 0 && <div className={styles.loader}>&nbsp;</div>}
               {searchType === 1 && searchState === 1 && <h3 className={styles.loader_text}>Konumunuz Taranıyor</h3>}
               {searchType === 1 && searchState === 2 && <h3 className={styles.loader_text}>Çevrenizdeki Ürünlere Ulaşılıyor</h3>}
@@ -168,9 +171,9 @@ const Home = () => {
             </>}
         </main>
             <BottomNavbar 
-              active={0}
-              onHomeClick={() => {}} 
-              onSearchClick={() => {router.push('/search')}}
+              active={1}
+              onHomeClick={() => {router.push('/')}} 
+              onSearchClick={() => {}}
               onLocationClick={searchButton} 
               onEUClick={() => {toast.success("EU")}} 
               onSettingsClick={() => {toast.success("Settings")}}
