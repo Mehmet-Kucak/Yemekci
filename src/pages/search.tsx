@@ -21,7 +21,7 @@ type DocumentData = {
   img: string;
 };
 
-const Home = () => {
+const Search = () => {
   const [data, setData] = useState<DocumentData[]>([]);
   const [position, setPosition] = useState<[number, number]>([0, 0]); // [lat, lng]
   const [city, setCity] = useState<[string,string,string]>(['01','','']); // [id, province, error]
@@ -234,4 +234,4 @@ const Home = () => {
         );
       };
 
-export default Home;
+export default Search;

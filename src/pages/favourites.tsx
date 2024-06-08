@@ -16,7 +16,7 @@ type DocumentData = {
     province: string;
     img: string;
 };
-const favourites = () => {
+const Favourites = () => {
     const [data, setData] = useState<DocumentData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [selectedProduct, setSelectedProduct] = useState<number>(-1);
@@ -152,4 +152,4 @@ const favourites = () => {
     </>)
 }
 
-export default favourites
+export default Favourites
