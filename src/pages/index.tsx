@@ -6,10 +6,11 @@ import StaticMap from '@/components/StaticMap';
 import ProductCard from '@/components/ProductCard';
 import toast from 'react-hot-toast';
 import { collection, getDocs, query } from 'firebase/firestore';
-import {db} from '@/config/firebaseConfig'
+import {GetUserData, auth, db, AddToFavourites, RemoveFromFavourites} from '@/config/firebaseConfig'
 import PlaceCard from '@/components/PlaceCard';
 import Map from '@/components/DynamicMap';
 import { useRouter } from 'next/router';
+import { User, onAuthStateChanged } from 'firebase/auth';
 
 type DocumentData = {
   id: string;
@@ -27,6 +28,23 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState<number>(-1);
   const [selectedPlace, setSelectedPlace] = useState<number>(-1);
   const router = useRouter();
+  const [currUser, setCurrUser] = useState<User | null>(null);
+  const [userData, setUserData] = useState<any>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            setCurrUser(user);
+            const data = await GetUserData(user.uid);
+            setUserData(data);
+        } else {
+            setCurrUser(null);
+            setUserData(null);
+        }
+    });
+
+    return () => unsubscribe();
+  }, []);
   
   const getProducts = async () => {
     if (navigator.geolocation) {
@@ -55,7 +73,7 @@ const Home = () => {
             const docs = querySnapshot.docs.map((doc) => {
               const data = doc.data();
               return {
-                id: doc.id,
+                id: data.registrationNumber,
                 name: data.name,
                 province: data.province,
                 img: data.img,
@@ -117,6 +135,24 @@ const Home = () => {
     router.push('/profile');
   }
 
+  const favButton = async () => {
+    if (currUser && data[selectedProduct]) {
+      const favourite = { city: city[0], id: data[selectedProduct].id };
+      await AddToFavourites(currUser.uid, favourite);
+      const updatedUserData = await GetUserData(currUser.uid);
+      setUserData(updatedUserData);
+    }
+  };
+  
+  const unfavButton = async () => {
+    if (currUser && data[selectedProduct]) {
+      const favourite = { city: city[0], id: data[selectedProduct].id };
+      await RemoveFromFavourites(currUser.uid, favourite);
+      const updatedUserData = await GetUserData(currUser.uid);
+      setUserData(updatedUserData);
+    }
+  };
+
   return (     
     <>      
         <Head>
@@ -132,9 +168,16 @@ const Home = () => {
       </header>
         <main className={styles.main}>
             {selectedProduct === -1 && selectedPlace === -1 && <>
-              <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2>
-              <StaticMap city={city[0].toString()}/>
-              {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Konumu Tara</button>}
+              {data.length === 0 ? 
+              <h2 className={styles.title}><span>Coğrafi İşaretli</span><br/>Gastronomik Ürün Bulucu</h2> : 
+              <h2 className={styles.title}><span>{city[1]}</span><br/>{data.length} Ürün Bulundu</h2> }
+              <div className={styles.bracket_container}>
+                <div className={styles.bracket1} />
+                <StaticMap city={city[0].toString()}/>
+                <div className={styles.bracket2} />
+              </div>
+
+              {searchType === 0 && <button className={styles.search_button} onClick={searchButton}>Ürünleri Bul</button>}
               {searchType !== 0 && <div className={styles.loader}>&nbsp;</div>}
               {searchType === 1 && searchState === 1 && <h3 className={styles.loader_text}>Konumunuz Taranıyor</h3>}
               {searchType === 1 && searchState === 2 && <h3 className={styles.loader_text}>Çevrenizdeki Ürünlere Ulaşılıyor</h3>}
@@ -144,8 +187,19 @@ const Home = () => {
                 })}
               </div>
             </>}
-            {selectedProduct !== -1 && selectedPlace === -1 && <>
+              {selectedProduct !== -1 && selectedPlace === -1 && <>
               <h2 className={styles.title}><span>{data[selectedProduct].name}</span><br/>{data[selectedProduct].province}</h2>
+              {userData?.Favourites.some((fav: any) => fav.id === data[selectedProduct].id) ?
+                <button className={styles.add_to_fav} onClick={unfavButton}>
+                  <img src="/fullstar_icon.svg" alt="Remove from Favourites" />
+                  Favorilerden Çıkar
+                </button>
+                :
+                <button className={styles.add_to_fav} onClick={favButton}>
+                  <img src="/star_yellow_icon.svg" alt="Add to Favourites" />
+                  Favorilere Ekle
+                </button>
+              }
 
               <div className={styles.ai}>
                 <h3>{data[selectedProduct].name} Yemeği Hakkında Bilgiler</h3><br/>
@@ -172,8 +226,8 @@ const Home = () => {
               onHomeClick={() => {}} 
               onSearchClick={() => {router.push('/search')}}
               onLocationClick={searchButton} 
+              onFavsClick={() => {router.push('/favourites')}}
               onEUClick={() => {toast.success("EU")}} 
-              onSettingsClick={() => {toast.success("Settings")}}
             />
           </>
         );

@@ -16,8 +16,8 @@
 }
 
 .selected path{
-    fill: #f33;
-    stroke: #f33;
+    fill: #ffdf12;
+    stroke: #ffdf12;
     height: 100%;
     width: 100%;
 }

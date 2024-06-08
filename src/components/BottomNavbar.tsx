@@ -7,10 +7,10 @@ interface BottomNavbarProps {
   onSearchClick: () => void;
   onLocationClick: () => void;
   onEUClick: () => void;
-  onSettingsClick: () => void;
+  onFavsClick: () => void;
 }
 
-const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearchClick, onLocationClick, onEUClick, onSettingsClick }) => {
+const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearchClick, onLocationClick, onEUClick, onFavsClick }) => {
   return (
     <nav className={styles.bottomNavbar}>
       <button className={`${styles.link} ${active === 0 ? styles.active : ''}`} onClick={onHomeClick}>
@@ -25,11 +25,11 @@ const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearc
         <img src="/location_icon.png" alt="location"/>
       </button>
 
+      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onFavsClick}>
+        <img src="/fullstar_white_icon.svg" alt="favs"/>
+      </button>
       <button className={`${styles.link} ${active === 3 ? styles.active : ''}`} onClick={onEUClick}>
         <img src="/European_stars.png" alt="EU"/>
-      </button>
-      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onSettingsClick}>
-        <img src="/settings_icon.png" alt="settings"/>
       </button>
     </nav>
   );

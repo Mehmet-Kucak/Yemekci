@@ -17,6 +17,8 @@ import {
     getDocs,
     query,
     where,
+    updateDoc,
+    arrayUnion, arrayRemove
 } from "firebase/firestore";
 //
 import { toast } from "react-hot-toast";
@@ -152,6 +154,11 @@ function handleAuthError(error: any) {
 #Users
 - Username (String)
 - UserID (String)
+- Language (String)
+- Favourites (Array of Objects)
+    - city (String)
+    - id (String)
+- CreationDate (Date)
 */
 
 export function SaveNewUser(user: any) {
@@ -161,6 +168,8 @@ export function SaveNewUser(user: any) {
     const newUser = {
         Username: user.displayName,
         UserID: newUserID,
+        Language: "tr",
+        Favourites: [],
         CreationDate: new Date(user.metadata.creationTime),
     };
 
@@ -186,5 +195,32 @@ export async function UserWithUsernameExists(username: any) {
     }
 
     return false;
+}
+
+export async function AddToFavourites(userID: string, favourite: { city: string, id: string }) {
+    const userDoc = doc(db, "Users", userID);
+    try {
+        await updateDoc(userDoc, {
+            Favourites: arrayUnion(favourite)
+        });
+        toast.success("Product added to favourites!");
+    } catch (error) {
+        toast.error("Error adding product to favourites.");
+        console.error("Error adding to favourites: ", error);
+    }
+}
+
+// Remove a product from the user's favorites
+export async function RemoveFromFavourites(userID: string, favourite: { city: string, id: string }) {
+    const userDoc = doc(db, "Users", userID);
+    try {
+        await updateDoc(userDoc, {
+            Favourites: arrayRemove(favourite)
+        });
+        toast.success("Product removed from favourites!");
+    } catch (error) {
+        toast.error("Error removing product from favourites.");
+        console.error("Error removing from favourites: ", error);
+    }
 }
 // ############################
