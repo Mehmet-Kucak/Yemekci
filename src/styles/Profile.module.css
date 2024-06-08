@@ -44,6 +44,8 @@
     width: 100%;
     max-width: 400px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .title h1 {
@@ -70,7 +72,7 @@
     cursor: pointer;
 }
 
-.button:hover, .switchButton:hover {
+.button:hover{
     background-color: #0056b3;
 }
 

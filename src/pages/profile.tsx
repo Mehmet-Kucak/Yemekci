@@ -95,10 +95,15 @@ const Profile = () => {
                         <h1>Hoşgeldin, {userData?.Username}</h1>
                         <p>Email: {currUser.email}</p>
                         <button onClick={() => {
+                            router.push("/favourites");
+                        }} className={styles.button}>
+                            Favorileri Gör
+                        </button>
+                        <button onClick={() => {
                             SignOut();
                             toast.success("Signed out successfully");
                         }} className={styles.button}>
-                            Sign Out
+                            Çıkış Yap
                         </button>
                     </div>
                 ) : (
