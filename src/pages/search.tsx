@@ -68,7 +68,7 @@ const Search = () => {
           "Diğer ürünler",
           "Dokumalar",
           "Halılar ve kilimler",
-          "Halılar, kilimler ve dokumalar dışında kalan el",
+          "Halılar, kilimler ve dokumalar dışında kalan el sanatı ürünleri",
         ];
 
         try {
