@@ -187,7 +187,7 @@ const Favourites = () => {
         onSearchClick={() => {router.push('/search')}}
         onLocationClick={() => {}}
         onFavsClick={() => {}}
-        onEUClick={() => {toast.success("EU")}}
+        onEUClick={() => {router.push('/eu')}}
     />
     </>)
 }

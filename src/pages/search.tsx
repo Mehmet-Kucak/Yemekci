@@ -69,7 +69,6 @@ const Search = () => {
           "Dokumalar",
           "Halılar ve kilimler",
           "Halılar, kilimler ve dokumalar dışında kalan el",
-          "sanatı ürünleri"
         ];
 
         try {
@@ -237,7 +236,7 @@ const Search = () => {
               onSearchClick={() => {}}
               onLocationClick={searchButton} 
               onFavsClick={() => {router.push('/favourites')}}
-              onEUClick={() => {toast.success("EU")}} 
+              onEUClick={() => {router.push('/eu')}} 
             />
           </>
         );

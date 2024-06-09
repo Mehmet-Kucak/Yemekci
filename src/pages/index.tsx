@@ -71,7 +71,6 @@ const Home = () => {
             "Dokumalar",
             "Halılar ve kilimler",
             "Halılar, kilimler ve dokumalar dışında kalan el sanatı ürünleri",
-            "sanatı ürünleri"
           ];
 
           try {
@@ -235,7 +234,7 @@ const Home = () => {
               onSearchClick={() => {router.push('/search')}}
               onLocationClick={searchButton} 
               onFavsClick={() => {router.push('/favourites')}}
-              onEUClick={() => {toast.success("EU")}} 
+              onEUClick={() => {router.push('/eu')}} 
             />
           </>
         );
