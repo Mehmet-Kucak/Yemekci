@@ -1,23 +1,23 @@
-.map{
-    height: 100%;
-    width: 100%;
+.map {
+  height: 100%;
+  width: 100%;
 }
 
-.map g{
-    height: 100%;
-    width: 100%;
+.map g {
+  height: 100%;
+  width: 100%;
 }
 
 .map path {
-    fill: #286090;
-    stroke: #286090;
-    height: 100%;
-    width: 100%;
+  fill: #286090;
+  stroke: #286090;
+  height: 100%;
+  width: 100%;
 }
 
-.selected path{
-    fill: #ffdf12;
-    stroke: #ffdf12;
-    height: 100%;
-    width: 100%;
+.selected path {
+  fill: #ffdf12;
+  stroke: #ffdf12;
+  height: 100%;
+  width: 100%;
 }

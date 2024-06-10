@@ -43,22 +43,22 @@
   align-items: center;
   text-align: center;
 
-  background:none;
-  border:none;
+  background: none;
+  border: none;
 }
 .link img {
   width: 50%;
   height: 50%;
 }
-.link p{
+.link p {
   font-size: 12px;
 }
-.active > img{
+.active > img {
   filter: drop-shadow(0 0 6px #000);
 }
 
 .center {
-  position : absolute;
+  position: absolute;
   top: -40px;
   width: 80px;
   height: 80px;
@@ -68,7 +68,7 @@
   border-radius: 100%;
   background-color: #f00;
 
-  box-shadow: 0px 10px 20px 0px rgba(100,0,0,0.75);
+  box-shadow: 0px 10px 20px 0px rgba(100, 0, 0, 0.75);
   border: none;
 }
 .center img {
