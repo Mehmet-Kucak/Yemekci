@@ -1,0 +1,55 @@
+{
+  "Index": {
+    "title": "Indicazione Geografica",
+    "description": "Ricerca di Prodotti Gastronomici",
+    "found": "{number} Prodotti Trovati",
+    "search": "Cerca Prodotti",
+    "searchingLocation": "Scansione della Tua Posizione",
+    "searchingProducts": "Accesso ai Prodotti Intorno a Te",
+    "addFav": "Aggiungi ai Preferiti",
+    "removeFav": "Rimuovi dai Preferiti",
+    "aboutProduct": "Informazioni su {product}"
+  },
+
+  "Search": {
+    "title": "Indicazione Geografica",
+    "description": "Ricerca di Prodotti Gastronomici",
+    "found": "{number} Prodotti Trovati",
+    "search": "Cerca Prodotti",
+    "searchingLocation": "Scansione della Tua Posizione",
+    "searchingProducts": "Accesso ai Prodotti Intorno a Te",
+    "addFav": "Aggiungi ai Preferiti",
+    "removeFav": "Rimuovi dai Preferiti",
+    "aboutProduct": "Informazioni su {product}"
+  },
+
+  "Favourites": {
+    "title": "Prodotti Preferiti",
+    "loginToAccess": "Effettua il Login per Accedere ai Tuoi Prodotti Preferiti",
+    "loginOrSignup": "Accedi o Registrati",
+    "loading": "Caricamento",
+    "noFavourites": "Non Hai Ancora Prodotti Preferiti",
+    "aboutProduct": "Informazioni su {product}"
+  },
+
+  "Profile": {
+    "welcome": "Benvenuto, {name}!",
+    "userEmail": "Email: {email}",
+    "goFavs": "Visualizza Preferiti",
+    "logout": "Esci",
+    "login": "Accedi",
+    "signup": "Registrati",
+    "username": "Nome Utente",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Conferma Password",
+    "noAccount": "Non Hai un Account?",
+    "alreadyHaveAccount": "Hai Già un Account?",
+    "loginSuccess": "Accesso Riuscito",
+    "signupSuccess": "Registrazione Riuscita",
+    "logoutSuccess": "Disconnessione Riuscita"
+  },
+  "Other": {
+    "appLang": "La lingua dell'app è Italiano"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "Index": {
+    "title": "Geografiskt Skyddad",
+    "description": "Gastronomisk Produktfinnare",
+    "found": "{number} Produkter Hittades",
+    "search": "Sök Produkter",
+    "searchingLocation": "Skannar Din Plats",
+    "searchingProducts": "Åtkomst till Produkter Runt Dig",
+    "addFav": "Lägg till i Favoriter",
+    "removeFav": "Ta Bort från Favoriter",
+    "aboutProduct": "Information om {product}"
+  },
+
+  "Search": {
+    "title": "Geografiskt Skyddad",
+    "description": "Gastronomisk Produktfinnare",
+    "found": "{number} Produkter Hittades",
+    "search": "Sök Produkter",
+    "searchingLocation": "Skannar Din Plats",
+    "searchingProducts": "Åtkomst till Produkter Runt Dig",
+    "addFav": "Lägg till i Favoriter",
+    "removeFav": "Ta Bort från Favoriter",
+    "aboutProduct": "Information om {product}"
+  },
+
+  "Favourites": {
+    "title": "Favoritprodukter",
+    "loginToAccess": "Logga in För att Komma åt Dina Favoritprodukter",
+    "loginOrSignup": "Logga In eller Registrera",
+    "loading": "Laddar",
+    "noFavourites": "Du Har Inga Favoritprodukter Ännu",
+    "aboutProduct": "Information om {product}"
+  },
+
+  "Profile": {
+    "welcome": "Välkommen, {name}!",
+    "userEmail": "Email: {email}",
+    "goFavs": "Visa Favoriter",
+    "logout": "Logga ut",
+    "login": "Logga in",
+    "signup": "Registrera",
+    "username": "Användarnamn",
+    "email": "Email",
+    "password": "Lösenord",
+    "confirmPassword": "Bekräfta Lösenord",
+    "noAccount": "Har du inget Konto?",
+    "alreadyHaveAccount": "Har du Redan ett Konto?",
+    "loginSuccess": "Inloggning Framgångsrik",
+    "signupSuccess": "Registrering Framgångsrik",
+    "logoutSuccess": "Utloggning Framgångsrik"
+  },
+  "Other": {
+    "appLang": "Appens språk är Svenska"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "Index": {
+    "title": "Geografisch Geschützt",
+    "description": "Gastronomischer Produktfinder",
+    "found": "{number} Produkte Gefunden",
+    "search": "Produkte Suchen",
+    "searchingLocation": "Standort Wird Gescannt",
+    "searchingProducts": "Produkte in Ihrer Umgebung Werden Abgerufen",
+    "addFav": "Zu Favoriten Hinzufügen",
+    "removeFav": "Aus Favoriten Entfernen",
+    "aboutProduct": "Informationen Über {product}"
+  },
+
+  "Search": {
+    "title": "Geografisch Geschützt",
+    "description": "Gastronomischer Produktfinder",
+    "found": "{number} Produkte Gefunden",
+    "search": "Produkte Suchen",
+    "searchingLocation": "Standort Wird Gescannt",
+    "searchingProducts": "Produkte in Ihrer Umgebung Werden Abgerufen",
+    "addFav": "Zu Favoriten Hinzufügen",
+    "removeFav": "Aus Favoriten Entfernen",
+    "aboutProduct": "Informationen Über {product}"
+  },
+
+  "Favourites": {
+    "title": "Lieblingsprodukte",
+    "loginToAccess": "Bitte Melden Sie Sich An, Um Auf Ihre Lieblingsprodukte Zuzugreifen",
+    "loginOrSignup": "Anmelden oder Registrieren",
+    "loading": "Wird Geladen",
+    "noFavourites": "Sie Haben Noch Keine Lieblingsprodukte",
+    "aboutProduct": "Informationen Über {product}"
+  },
+
+  "Profile": {
+    "welcome": "Willkommen, {name}!",
+    "userEmail": "E-Mail: {email}",
+    "goFavs": "Favoriten Ansehen",
+    "logout": "Abmelden",
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "username": "Benutzername",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort Bestätigen",
+    "noAccount": "Kein Konto?",
+    "alreadyHaveAccount": "Bereits Ein Konto?",
+    "loginSuccess": "Erfolgreich Angemeldet",
+    "signupSuccess": "Erfolgreich Registriert",
+    "logoutSuccess": "Erfolgreich Abgemeldet"
+  },
+
+  "Other":{
+    "appLang": "Die Sprache der Bewerbung ist Deutsch"
+  }
+}

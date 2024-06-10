@@ -1,0 +1,55 @@
+{
+  "Index": {
+    "title": "地理的表示",
+    "description": "ガストロノミープロダクトファインダー",
+    "found": "{number} 製品が見つかりました",
+    "search": "製品を検索",
+    "searchingLocation": "あなたの位置をスキャン中",
+    "searchingProducts": "周囲の製品にアクセス中",
+    "addFav": "お気に入りに追加",
+    "removeFav": "お気に入りから削除",
+    "aboutProduct": "{product} に関する情報"
+  },
+
+  "Search": {
+    "title": "地理的表示",
+    "description": "ガストロノミープロダクトファインダー",
+    "found": "{number} 製品が見つかりました",
+    "search": "製品を検索",
+    "searchingLocation": "あなたの位置をスキャン中",
+    "searchingProducts": "周囲の製品にアクセス中",
+    "addFav": "お気に入りに追加",
+    "removeFav": "お気に入りから削除",
+    "aboutProduct": "{product} に関する情報"
+  },
+
+  "Favourites": {
+    "title": "お気に入り製品",
+    "loginToAccess": "お気に入りの製品にアクセスするにはログインしてください",
+    "loginOrSignup": "ログインまたはサインアップ",
+    "loading": "読み込み中",
+    "noFavourites": "まだお気に入りの製品はありません",
+    "aboutProduct": "{product} に関する情報"
+  },
+
+  "Profile": {
+    "welcome": "ようこそ, {name}さん!",
+    "userEmail": "メールアドレス: {email}",
+    "goFavs": "お気に入りを表示",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "signup": "サインアップ",
+    "username": "ユーザー名",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "confirmPassword": "パスワードの確認",
+    "noAccount": "アカウントがありませんか？",
+    "alreadyHaveAccount": "既にアカウントをお持ちですか？",
+    "loginSuccess": "ログイン成功",
+    "signupSuccess": "サインアップ成功",
+    "logoutSuccess": "ログアウト成功"
+  },
+  "Other": {
+    "appLang": "アプリの言語は日本語です"
+  }
+}

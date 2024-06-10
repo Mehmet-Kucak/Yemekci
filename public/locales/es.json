@@ -1,0 +1,56 @@
+{
+  "Index": {
+    "title": "Indicación Geográfica",
+    "description": "Buscador de Productos Gastronómicos",
+    "found": "{number} Productos Encontrados",
+    "search": "Buscar Productos",
+    "searchingLocation": "Escaneando Tu Ubicación",
+    "searchingProducts": "Accediendo a Productos Cerca de Ti",
+    "addFav": "Agregar a Favoritos",
+    "removeFav": "Eliminar de Favoritos",
+    "aboutProduct": "Información Sobre {product}"
+  },
+
+  "Search": {
+    "title": "Indicación Geográfica",
+    "description": "Buscador de Productos Gastronómicos",
+    "found": "{number} Productos Encontrados",
+    "search": "Buscar Productos",
+    "searchingLocation": "Escaneando Tu Ubicación",
+    "searchingProducts": "Accediendo a Productos Cerca de Ti",
+    "addFav": "Agregar a Favoritos",
+    "removeFav": "Eliminar de Favoritos",
+    "aboutProduct": "Información Sobre {product}"
+  },
+
+  "Favourites": {
+    "title": "Productos Favoritos",
+    "loginToAccess": "Por Favor Inicia Sesión Para Acceder a Tus Productos Favoritos",
+    "loginOrSignup": "Iniciar Sesión o Registrarse",
+    "loading": "Cargando",
+    "noFavourites": "Aún No Tienes Productos Favoritos",
+    "aboutProduct": "Información Sobre {product}"
+  },
+
+  "Profile": {
+    "welcome": "Bienvenido, {name}!",
+    "userEmail": "Correo Electrónico: {email}",
+    "goFavs": "Ver Favoritos",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "username": "Nombre de Usuario",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "noAccount": "¿No Tienes Cuenta?",
+    "alreadyHaveAccount": "¿Ya Tienes Cuenta?",
+    "loginSuccess": "Inicio de Sesión Exitoso",
+    "signupSuccess": "Registro Exitoso",
+    "logoutSuccess": "Cierre de Sesión Exitoso"
+  },
+
+  "Other":{
+    "appLang": "El idioma de la aplicación es el español"
+  }
+}

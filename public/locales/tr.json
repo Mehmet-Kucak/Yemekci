@@ -1,10 +1,56 @@
-[
-  {
-    "id": 1,
-    "slug": "energy-storage-system-market-demand-is-projected-to-reach-44071-gw-in-2028",
-    "title": "Se prevé que la demanda del mercado de sistemas de almacenamiento de energía alcance los 440,71 GW en 2028",
-    "description": "...",
-    "content": "...",
-    "date": "16 de agosto de 2022"
+{
+  "Index":{
+    "title": "Coğrafi İşaretli",
+    "description": "Gastronomik Ürün Bulucu",
+    "found": "{number} Ürün Bulundu",
+    "search": "Ürünleri Ara",
+    "searchingLocation": "Konumunuz Taranıyor",
+    "searchingProducts": "Çevrenizdeki Ürünlere Ulaşılıyor",
+    "addFav": "Favorilere Ekle",
+    "removeFav": "Favorilerden Çıkar",
+    "aboutProduct": "{product} Hakkında Bilgiler"
+  },
+
+  "Search":{
+    "title": "Coğrafi İşaretli",
+    "description": "Gastronomik Ürün Bulucu",
+    "found": "{number} Ürün Bulundu",
+    "search": "Ürünleri Ara",
+    "searchingLocation": "Konumunuz Taranıyor",
+    "searchingProducts": "Çevrenizdeki Ürünlere Ulaşılıyor",
+    "addFav": "Favorilere Ekle",
+    "removeFav": "Favorilerden Çıkar",
+    "aboutProduct": "{product} Hakkında Bilgiler"
+  },
+
+  "Favourites":{
+    "title": "Favori Ürünler",
+    "loginToAccess": "Lütfen Favori Ürünlerinize Erişmek İçin Giriş Yapınız",
+    "loginOrSignup": "Giriş Yap veya Kayıt Ol",
+    "loading": "Yükleniyor",
+    "noFavourites": "Henüz Favori Ürününüz Bulunmamaktadır",
+    "aboutProduct": "{product} Hakkında Bilgiler"
+  },
+
+  "Profile":{
+    "welcome": "Hoşgeldiniz, {name}!",
+    "userEmail": "E-Posta: {email}",
+    "goFavs": "Favorileri Gör",
+    "logout": "Çıkış Yap",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "username": "Kullanıcı Adı",
+    "email": "E-Posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifreyi Onayla",
+    "noAccount": "Hesabınız Yok mu?",
+    "alreadyHaveAccount": "Zaten Hesabınız Var mı?",
+    "loginSuccess": "Başarıyla giriş yapıldı",
+    "signupSuccess": "Başarıyla kayıt olundu",
+    "logoutSuccess": "Başarıyla çıkış yapıldı"
+  },
+
+  "Other":{
+    "appLang": "Uygulamanın dili Türkçe"
   }
-]
+}

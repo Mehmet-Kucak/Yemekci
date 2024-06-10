@@ -16,6 +16,7 @@ import { User, onAuthStateChanged } from "firebase/auth";
 import styles from "@styles/Favourites.module.css";
 import PlaceCard from "@/components/PlaceCard";
 import Map from "@components/DynamicMap";
+import { useTranslations } from "next-intl";
 
 type DocumentData = {
   id: string;
@@ -32,6 +33,7 @@ const Favourites = () => {
   const router = useRouter();
   const [currUser, setCurrUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<any>(null);
+  const t = useTranslations("Favourites");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -116,30 +118,6 @@ const Favourites = () => {
     router.push("/profile");
   };
 
-  const favButton = async () => {
-    if (currUser && data[selectedProduct]) {
-      const favourite = {
-        city: data[selectedProduct].province,
-        id: data[selectedProduct].id,
-      };
-      await AddToFavourites(currUser.uid, favourite);
-      const updatedUserData = await GetUserData(currUser.uid);
-      setUserData(updatedUserData);
-    }
-  };
-
-  const unfavButton = async () => {
-    if (currUser && data[selectedProduct]) {
-      const favourite = {
-        city: data[selectedProduct].province,
-        id: data[selectedProduct].id,
-      };
-      await RemoveFromFavourites(currUser.uid, favourite);
-      const updatedUserData = await GetUserData(currUser.uid);
-      setUserData(updatedUserData);
-    }
-  };
-
   return (
     <>
       <Head>
@@ -161,19 +139,19 @@ const Favourites = () => {
         </button>
       </header>
       <main className={styles.main}>
-        {selectedProduct === -1 && selectedPlace === -1 && <h1>Favoriler</h1>}
+        {selectedProduct === -1 && selectedPlace === -1 && (
+          <h1>{t("title")}</h1>
+        )}
         <br />
         {!userData ? (
           <>
-            <h1 className={styles.title}>
-              Lütfen Favori Ürünlerinize Erişmek İçin Giriş Yapınız
-            </h1>
+            <h1 className={styles.title}>{t("loginToAccess")}</h1>
             <button
               type="button"
               onClick={() => router.push("profile")}
               className={styles.switch_button}
             >
-              Giriş Yap veya Kaydol
+              {t("loginOrSignup")}
             </button>
           </>
         ) : (
@@ -181,13 +159,11 @@ const Favourites = () => {
             {loading && (
               <>
                 <div className={styles.loader}>&nbsp;</div>
-                <h1 className={styles.loader_text}>Yükleniyor</h1>
+                <h1 className={styles.loader_text}>{t("loading")}</h1>
               </>
             )}
             {data.length === 0 && !loading && (
-              <h1 className={styles.title}>
-                Henüz favori ürününüz bulunmamaktadır.
-              </h1>
+              <h1 className={styles.title}>{t("noFavourites")}</h1>
             )}
             {selectedProduct === -1 && !loading && (
               <>
@@ -215,14 +191,24 @@ const Favourites = () => {
                   {data[selectedProduct].province}
                 </h2>
                 <div className={styles.ai}>
-                  <h3>{data[selectedProduct].name} Yemeği Hakkında Bilgiler</h3>
+                  <h3>
+                    {t("aboutProduct", { product: data[selectedProduct].name })}
+                  </h3>
                   <br />
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Labore incidunt accusamus voluptatem corporis autem.
-                    Delectus, corporis vitae. Aut, consequatur nesciunt.
-                    Eligendi ipsum quaerat laboriosam veritatis sit itaque
-                    officia iusto iste?
+                    Ortaklar Çöpşiş, Türk mutfağının sevilen lezzetlerinden
+                    biridir. Kökeni Anadolu&apos;ya dayanan bu yemek, genellikle
+                    dana eti veya tavuk eti kullanılarak hazırlanır. Et
+                    parçaları, önceden hazırlanan bir marinasyon karışımına
+                    batırılarak şişlere dizilir ve ardından mangalda pişirilir.
+                    Marinasyon karışımı genellikle yoğurt, zeytinyağı, sarımsak
+                    ve çeşitli baharatlardan oluşur. Pişirme sırasında etlerin
+                    arası zaman zaman tereyağı ile yağlanır, bu da lezzetini ve
+                    suluğunu artırır. Çöpşiş, genellikle közlenmiş domates,
+                    biber ve soğanla servis edilirken, yanında pilav, lavaş veya
+                    ekmek gibi ek lezzetler de sunulabilir. Bu nefis yemek, Türk
+                    mutfağının zengin lezzetlerinden biri olarak mangal
+                    partilerinde ve özel günlerde sıkça tercih edilir.
                   </p>
                 </div>
                 <hr />
@@ -324,3 +310,18 @@ const Favourites = () => {
 };
 
 export default Favourites;
+
+export async function getStaticProps(context: any) {
+  let messages;
+  try {
+    messages = (await import(`@public/locales/${context.locale}.json`)).default;
+  } catch (error) {
+    console.error(error);
+    messages = {};
+  }
+  return {
+    props: {
+      messages,
+    },
+  };
+}

@@ -1,10 +1,56 @@
-[
-  {
-    "id": 1,
-    "slug": "energy-storage-system-market-demand-is-projected-to-reach-44071-gw-in-2028",
-    "title": "Energy Storage System Market demand is Projected to Reach 440.71 GW in 2028",
-    "description": "...",
-    "content": "...",
-    "date": "August 16, 2022"
+{
+  "Index": {
+    "title": "Geographically Indicated",
+    "description": "Gastronomic Product Finder",
+    "found": "{number} Products Found",
+    "search": "Search Products",
+    "searchingLocation": "Scanning Your Location",
+    "searchingProducts": "Accessing Products Around You",
+    "addFav": "Add to Favorites",
+    "removeFav": "Remove from Favorites",
+    "aboutProduct": "Information About {product}"
+  },
+
+  "Search": {
+    "title": "Geographically Indicated",
+    "description": "Gastronomic Product Finder",
+    "found": "{number} Products Found",
+    "search": "Search Products",
+    "searchingLocation": "Scanning Your Location",
+    "searchingProducts": "Accessing Products Around You",
+    "addFav": "Add to Favorites",
+    "removeFav": "Remove from Favorites",
+    "aboutProduct": "Information About {product}"
+  },
+
+  "Favourites": {
+    "title": "Favorite Products",
+    "loginToAccess": "Please Log In to Access Your Favorite Products",
+    "loginOrSignup": "Log In or Sign Up",
+    "loading": "Loading",
+    "noFavourites": "You Have No Favorite Products Yet",
+    "aboutProduct": "Information About {product}"
+  },
+
+  "Profile": {
+    "welcome": "Welcome, {name}!",
+    "userEmail": "Email: {email}",
+    "goFavs": "View Favorites",
+    "logout": "Log Out",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "noAccount": "Don't Have an Account?",
+    "alreadyHaveAccount": "Already Have an Account?",
+    "loginSuccess": "Logged in Successfully",
+    "signupSuccess": "Signed up Successfully",
+    "logoutSuccess": "Logged out Successfully"
+  },
+
+  "Other":{
+    "appLang": "The language of the application is English"
   }
-]
+}

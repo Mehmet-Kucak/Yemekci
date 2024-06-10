@@ -1,0 +1,56 @@
+{
+  "Index": {
+    "title": "Indication Géographique",
+    "description": "Recherche de Produits Gastronomiques",
+    "found": "{number} Produits Trouvés",
+    "search": "Rechercher des Produits",
+    "searchingLocation": "Scan de Votre Emplacement",
+    "searchingProducts": "Accès aux Produits Autour de Vous",
+    "addFav": "Ajouter aux Favoris",
+    "removeFav": "Retirer des Favoris",
+    "aboutProduct": "Informations Sur {product}"
+  },
+
+  "Search": {
+    "title": "Indication Géographique",
+    "description": "Recherche de Produits Gastronomiques",
+    "found": "{number} Produits Trouvés",
+    "search": "Rechercher des Produits",
+    "searchingLocation": "Scan de Votre Emplacement",
+    "searchingProducts": "Accès aux Produits Autour de Vous",
+    "addFav": "Ajouter aux Favoris",
+    "removeFav": "Retirer des Favoris",
+    "aboutProduct": "Informations Sur {product}"
+  },
+
+  "Favourites": {
+    "title": "Produits Favoris",
+    "loginToAccess": "Veuillez Vous Connecter Pour Accéder à Vos Produits Favoris",
+    "loginOrSignup": "Se Connecter ou S'inscrire",
+    "loading": "Chargement",
+    "noFavourites": "Vous N'avez Pas Encore de Produits Favoris",
+    "aboutProduct": "Informations Sur {product}"
+  },
+
+  "Profile": {
+    "welcome": "Bienvenue, {name}!",
+    "userEmail": "E-mail: {email}",
+    "goFavs": "Voir les Favoris",
+    "logout": "Se Déconnecter",
+    "login": "Se Connecter",
+    "signup": "S'inscrire",
+    "username": "Nom d'Utilisateur",
+    "email": "E-mail",
+    "password": "Mot de Passe",
+    "confirmPassword": "Confirmer le Mot de Passe",
+    "noAccount": "Pas de Compte?",
+    "alreadyHaveAccount": "Vous Avez Déjà un Compte?",
+    "loginSuccess": "Connexion Réussie",
+    "signupSuccess": "Inscription Réussie",
+    "logoutSuccess": "Déconnexion Réussie"
+  },
+
+  "Other":{
+    "appLang": "La langue de la candidature est le français"
+  }
+}

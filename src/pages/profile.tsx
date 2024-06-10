@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 import styles from "@styles/Profile.module.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useTranslations } from "next-intl";
 
 const Profile = () => {
   const [currUser, setCurrUser] = useState<User | null>(null);
@@ -25,6 +26,7 @@ const Profile = () => {
   });
   const [userData, setUserData] = useState<any>(null);
   const router = useRouter();
+  const t = useTranslations("Profile");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -46,7 +48,7 @@ const Profile = () => {
     if (authType === "login") {
       const success = await SignIn(loginUser.email, loginUser.password);
       if (success) {
-        toast.success("Logged in successfully");
+        toast.success(t("loginSuccess"));
       }
     } else {
       const success = await SignUp(
@@ -56,7 +58,7 @@ const Profile = () => {
         newUser.password2
       );
       if (success) {
-        toast.success("Signed up successfully");
+        toast.success(t("signupSuccess"));
       }
     }
   };
@@ -110,31 +112,31 @@ const Profile = () => {
       <main className={styles.container}>
         {currUser ? (
           <div className={styles.profile}>
-            <h1>Hoşgeldin, {userData?.Username}</h1>
-            <p>Email: {currUser.email}</p>
+            <h1>{t("welcome", { name: userData?.Username })}</h1>
+            <p>{t("userEmail", { email: currUser.email })}</p>
             <button
               onClick={() => {
                 router.push("/favourites");
               }}
               className={styles.button}
             >
-              Favorileri Gör
+              {t("goFavs")}
             </button>
             <button
               onClick={() => {
                 SignOut();
-                toast.success("Signed out successfully");
+                toast.success(t("logoutSuccess"));
               }}
               className={styles.button}
             >
-              Çıkış Yap
+              {t("logout")}
             </button>
           </div>
         ) : (
           <div className={styles.authForm}>
             <form onSubmit={submit}>
               <div className={styles.title}>
-                <h1>{authType === "login" ? "Giriş Yap" : "Kaydol"}</h1>
+                <h1>{authType === "login" ? t("login") : t("signup")}</h1>
               </div>
               {authType === "login" ? (
                 <>
@@ -142,7 +144,7 @@ const Profile = () => {
                     type="text"
                     name="email"
                     value={loginUser.email}
-                    placeholder="Email"
+                    placeholder={t("email")}
                     onChange={handleChange}
                     className={styles.input}
                   />
@@ -150,19 +152,19 @@ const Profile = () => {
                     type="password"
                     name="password"
                     value={loginUser.password}
-                    placeholder="Password"
+                    placeholder={t("password")}
                     onChange={handleChange}
                     className={styles.input}
                   />
-                  <button className={styles.button}>Giriş Yap</button>
+                  <button className={styles.button}>{t("login")}</button>
                   <p>
-                    Hesabın yok mu?
+                    {t("noAccount")}
                     <button
                       type="button"
                       onClick={() => setAuthType("signup")}
                       className={styles.switchButton}
                     >
-                      Kaydol
+                      {t("signup")}
                     </button>
                   </p>
                 </>
@@ -172,7 +174,7 @@ const Profile = () => {
                     type="text"
                     name="username"
                     value={newUser.username}
-                    placeholder="Username"
+                    placeholder={t("username")}
                     onChange={handleChange}
                     className={styles.input}
                   />
@@ -180,7 +182,7 @@ const Profile = () => {
                     type="email"
                     name="email"
                     value={newUser.email}
-                    placeholder="Email"
+                    placeholder={t("email")}
                     onChange={handleChange}
                     className={styles.input}
                   />
@@ -188,7 +190,7 @@ const Profile = () => {
                     type="password"
                     name="password1"
                     value={newUser.password1}
-                    placeholder="Password"
+                    placeholder={t("password")}
                     onChange={handleChange}
                     className={styles.input}
                   />
@@ -196,19 +198,19 @@ const Profile = () => {
                     type="password"
                     name="password2"
                     value={newUser.password2}
-                    placeholder="Confirm Password"
+                    placeholder={t("confirmPassword")}
                     onChange={handleChange}
                     className={styles.input}
                   />
-                  <button className={styles.button}>Sign Up</button>
+                  <button className={styles.button}>{t("signup")}</button>
                   <p>
-                    Zaten hesabın var mı?
+                    {t("alreadyHaveAccount")}
                     <button
                       type="button"
                       onClick={() => setAuthType("login")}
                       className={styles.switchButton}
                     >
-                      Giriş yap
+                      {t("login")}
                     </button>
                   </p>
                 </>
@@ -222,3 +224,18 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export async function getStaticProps(context: any) {
+  let messages;
+  try {
+    messages = (await import(`@public/locales/${context.locale}.json`)).default;
+  } catch (error) {
+    console.error(error);
+    messages = {};
+  }
+  return {
+    props: {
+      messages,
+    },
+  };
+}

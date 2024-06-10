@@ -3,15 +3,12 @@ import Head from "next/head";
 import BottomNavbar from "@components/BottomNavbar";
 import { useRouter } from "next/router";
 import styles from "@styles/Int.module.css";
+import { useTranslations } from "next-intl";
 
-const Int = ({ data }: { data: any }) => {
+const Int = () => {
   const [lang, setLang] = useState("tr");
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(router.locales, router.locale, router.defaultLocale);
-    console.log(data);
-  }, []);
+  const t = useTranslations("Other");
 
   const backButton = () => {
     router.back();
@@ -19,6 +16,12 @@ const Int = ({ data }: { data: any }) => {
 
   const profileButton = () => {
     router.push("/profile");
+  };
+
+  const handleLanguageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    router.push(router.pathname, undefined, { locale: event.target.value });
   };
 
   return (
@@ -44,24 +47,31 @@ const Int = ({ data }: { data: any }) => {
       <main className={styles.main}>
         <h1 className={styles.title}>Choose Apps Language</h1>
         <br />
-        {
-          <select
-            id="Languages"
-            name="Languages"
-            className={styles.city_dropdown}
-          >
-            <option value={"TR"}>Türkçe</option>
-            <option value={"EN"}>English</option>
-            <option value={"DE"}>Deutsch</option>
-            <option value={"FR"}>Français</option>
-            <option value={"ES"}>Español</option>
-            <option value={"EL"}>Ελληνικά</option>
-            <option value={"RU"}>Русский</option>
-          </select>
-        }
+
+        <select
+          id="Languages"
+          name="Languages"
+          className={styles.city_dropdown}
+          value={router.locale}
+          onChange={handleLanguageChange}
+        >
+          <option value={"tr"}>Türkçe</option>
+          <option value={"en"}>English</option>
+          <option value={"de"}>Deutsch</option>
+          <option value={"fr"}>Français</option>
+          <option value={"it"}>Italiano</option>
+          <option value={"nl"}>Nederlands</option>
+          <option value={"sv"}>Svenska</option>
+          <option value={"es"}>Español</option>
+          <option value={"el"}>Ελληνικά</option>
+          <option value={"ru"}>Русский</option>
+          <option value={"ja"}>日本語</option>
+          <option value={"zh"}>中国人</option>
+        </select>
+        <h3>{t("appLang")}</h3>
       </main>
       <BottomNavbar
-        active={3}
+        active={4}
         onHomeClick={() => {
           router.push("/");
         }}
@@ -82,20 +92,17 @@ const Int = ({ data }: { data: any }) => {
 
 export default Int;
 
-import { GetServerSidePropsContext } from "next";
-
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const { locale } = context;
-  console.log(context);
-  const res = await fetch(`http://localhost:3000/${locale}`);
-  console.log(res);
-  const data = await res.json();
-
+export async function getStaticProps(context: any) {
+  let messages;
+  try {
+    messages = (await import(`@public/locales/${context.locale}.json`)).default;
+  } catch (error) {
+    console.error(error);
+    messages = {};
+  }
   return {
     props: {
-      data,
+      messages,
     },
   };
-};
+}

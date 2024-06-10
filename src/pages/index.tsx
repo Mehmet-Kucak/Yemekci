@@ -17,6 +17,7 @@ import PlaceCard from "@/components/PlaceCard";
 import Map from "@/components/DynamicMap";
 import { useRouter } from "next/router";
 import { User, onAuthStateChanged } from "firebase/auth";
+import { useTranslations } from "next-intl";
 
 type DocumentData = {
   id: string;
@@ -33,9 +34,10 @@ const Home = () => {
   const [searchState, setSearchState] = useState<number>(0); // 0: not searching, 1: searching location, 2: searching products, 3: searching images
   const [selectedProduct, setSelectedProduct] = useState<number>(-1);
   const [selectedPlace, setSelectedPlace] = useState<number>(-1);
-  const router = useRouter();
   const [currUser, setCurrUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<any>(null);
+  const router = useRouter();
+  const t = useTranslations("Index");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -115,7 +117,7 @@ const Home = () => {
     } else {
       setCity(["", "", "Geolocation is not supported"]);
       console.error("Geolocation is not supported by this browser.");
-      toast.error("Bu tarayıcı konum servislerini desteklememektedir.");
+      toast.error("Geolocation is not supported by this browser.");
     }
 
     await setSearchState(0);
@@ -196,15 +198,15 @@ const Home = () => {
           <>
             {data.length === 0 ? (
               <h2 className={styles.title}>
-                <span>Coğrafi İşaretli</span>
+                <span>{t("title")}</span>
                 <br />
-                Gastronomik Ürün Bulucu
+                {t("description")}
               </h2>
             ) : (
               <h2 className={styles.title}>
                 <span>{city[1]}</span>
                 <br />
-                {data.length} Ürün Bulundu
+                {t("found", { number: data.length })}
               </h2>
             )}
             <div className={styles.bracket_container}>
@@ -215,17 +217,15 @@ const Home = () => {
 
             {searchType === 0 && (
               <button className={styles.search_button} onClick={searchButton}>
-                Ürünleri Bul
+                {t("search")}
               </button>
             )}
             {searchType !== 0 && <div className={styles.loader}>&nbsp;</div>}
             {searchType === 1 && searchState === 1 && (
-              <h3 className={styles.loader_text}>Konumunuz Taranıyor</h3>
+              <h3 className={styles.loader_text}>{t("searchingLocation")}</h3>
             )}
             {searchType === 1 && searchState === 2 && (
-              <h3 className={styles.loader_text}>
-                Çevrenizdeki Ürünlere Ulaşılıyor
-              </h3>
+              <h3 className={styles.loader_text}>{t("searchingProducts")}</h3>
             )}
             <div className={styles.product_container}>
               {data.map((product, index) => {
@@ -255,17 +255,19 @@ const Home = () => {
             ) ? (
               <button className={styles.add_to_fav} onClick={unfavButton}>
                 <img src="/fullstar_icon.svg" alt="Remove from Favourites" />
-                Favorilerden Çıkar
+                {t("removeFav")}
               </button>
             ) : (
               <button className={styles.add_to_fav} onClick={favButton}>
                 <img src="/star_yellow_icon.svg" alt="Add to Favourites" />
-                Favorilere Ekle
+                {t("addFav")}
               </button>
             )}
 
             <div className={styles.ai}>
-              <h3>{data[selectedProduct].name} Yemeği Hakkında Bilgiler</h3>
+              <h3>
+                {t("aboutProduct", { product: data[selectedProduct].name })}
+              </h3>
               <br />
               <p>
                 Ortaklar Çöpşiş, Türk mutfağının sevilen lezzetlerinden biridir.
@@ -378,3 +380,18 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps(context: any) {
+  let messages;
+  try {
+    messages = (await import(`@public/locales/${context.locale}.json`)).default;
+  } catch (error) {
+    console.error(error);
+    messages = {};
+  }
+  return {
+    props: {
+      messages,
+    },
+  };
+}

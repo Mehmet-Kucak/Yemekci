@@ -4,7 +4,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
 //
@@ -84,8 +83,6 @@ export async function SignUp(
 
     await SaveNewUser(userCredential.user);
 
-    await sendEmailVerification(userCredential.user);
-    toast.success("Send verification mail.");
     success = true;
   } catch (error) {
     handleAuthError(error);
@@ -101,14 +98,6 @@ export function SignIn(email: any, password: any) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      if (!user.emailVerified) {
-        toast.error("Please verify your email.");
-        sendEmailVerification(userCredential.user).catch((error) => {
-          console.error(error.message);
-        });
-        SignOut();
-        success = false;
-      }
     })
     .catch((error) => {
       handleAuthError(error);

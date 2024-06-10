@@ -1,0 +1,55 @@
+{
+  "Index": {
+    "title": "地理标志",
+    "description": "美食产品查找器",
+    "found": "找到 {number} 个产品",
+    "search": "搜索产品",
+    "searchingLocation": "扫描您的位置",
+    "searchingProducts": "访问您周围的产品",
+    "addFav": "添加到收藏夹",
+    "removeFav": "从收藏夹中移除",
+    "aboutProduct": "关于 {product} 的信息"
+  },
+
+  "Search": {
+    "title": "地理标志",
+    "description": "美食产品查找器",
+    "found": "找到 {number} 个产品",
+    "search": "搜索产品",
+    "searchingLocation": "扫描您的位置",
+    "searchingProducts": "访问您周围的产品",
+    "addFav": "添加到收藏夹",
+    "removeFav": "从收藏夹中移除",
+    "aboutProduct": "关于 {product} 的信息"
+  },
+
+  "Favourites": {
+    "title": "收藏产品",
+    "loginToAccess": "请登录以访问您的收藏产品",
+    "loginOrSignup": "登录或注册",
+    "loading": "加载中",
+    "noFavourites": "您还没有收藏产品",
+    "aboutProduct": "关于 {product} 的信息"
+  },
+
+  "Profile": {
+    "welcome": "欢迎, {name}!",
+    "userEmail": "邮箱: {email}",
+    "goFavs": "查看收藏",
+    "logout": "登出",
+    "login": "登录",
+    "signup": "注册",
+    "username": "用户名",
+    "email": "邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "noAccount": "没有账户？",
+    "alreadyHaveAccount": "已有账户？",
+    "loginSuccess": "登录成功",
+    "signupSuccess": "注册成功",
+    "logoutSuccess": "登出成功"
+  },
+  "Other": {
+    "appLang": "应用语言为简体中文"
+  }
+}

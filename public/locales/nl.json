@@ -1,0 +1,55 @@
+{
+  "Index": {
+    "title": "Geografisch Aangegeven",
+    "description": "Gastronomische Productzoeker",
+    "found": "{number} Producten Gevonden",
+    "search": "Zoek Producten",
+    "searchingLocation": "Uw Locatie Wordt Gescand",
+    "searchingProducts": "Toegang tot Producten Rondom U",
+    "addFav": "Toevoegen aan Favorieten",
+    "removeFav": "Verwijderen uit Favorieten",
+    "aboutProduct": "Informatie Over {product}"
+  },
+
+  "Search": {
+    "title": "Geografisch Aangegeven",
+    "description": "Gastronomische Productzoeker",
+    "found": "{number} Producten Gevonden",
+    "search": "Zoek Producten",
+    "searchingLocation": "Uw Locatie Wordt Gescand",
+    "searchingProducts": "Toegang tot Producten Rondom U",
+    "addFav": "Toevoegen aan Favorieten",
+    "removeFav": "Verwijderen uit Favorieten",
+    "aboutProduct": "Informatie Over {product}"
+  },
+
+  "Favourites": {
+    "title": "Favoriete Producten",
+    "loginToAccess": "Log In om Toegang te Krijgen tot Uw Favoriete Producten",
+    "loginOrSignup": "Inloggen of Registreren",
+    "loading": "Laden",
+    "noFavourites": "U Heeft Nog Geen Favoriete Producten",
+    "aboutProduct": "Informatie Over {product}"
+  },
+
+  "Profile": {
+    "welcome": "Welkom, {name}!",
+    "userEmail": "Email: {email}",
+    "goFavs": "Bekijk Favorieten",
+    "logout": "Uitloggen",
+    "login": "Inloggen",
+    "signup": "Registreren",
+    "username": "Gebruikersnaam",
+    "email": "Email",
+    "password": "Wachtwoord",
+    "confirmPassword": "Bevestig Wachtwoord",
+    "noAccount": "Heeft u Geen Account?",
+    "alreadyHaveAccount": "Heeft u Al een Account?",
+    "loginSuccess": "Succesvol Ingelogd",
+    "signupSuccess": "Succesvol Geregistreerd",
+    "logoutSuccess": "Succesvol Uitgelogd"
+  },
+  "Other": {
+    "appLang": "De taal van de app is Nederlands"
+  }
+}
