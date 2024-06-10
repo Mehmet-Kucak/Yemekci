@@ -43,6 +43,13 @@ const Profile = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== router.locale) {
+      router.replace(router.pathname, undefined, { locale: storedLocale });
+    }
+  }, [router]);
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (authType === "login") {

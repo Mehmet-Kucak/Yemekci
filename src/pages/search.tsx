@@ -59,6 +59,13 @@ const Search = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== router.locale) {
+      router.replace(router.pathname, undefined, { locale: storedLocale });
+    }
+  }, [router]);
+
   const getProducts = async () => {
     if (navigator.geolocation) {
       try {
@@ -385,7 +392,10 @@ const Search = () => {
         onHomeClick={() => {
           router.push("/");
         }}
-        onSearchClick={() => {}}
+        onSearchClick={() => {
+          setSelectedProduct(-1);
+          setSelectedPlace(-1);
+        }}
         onLocationClick={searchButton}
         onFavsClick={() => {
           router.push("/favourites");

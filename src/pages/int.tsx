@@ -6,11 +6,18 @@ import styles from "@styles/Int.module.css";
 import { useTranslations } from "next-intl";
 
 const Int = () => {
-  const [lang, setLang] = useState("tr");
   const router = useRouter();
   const t = useTranslations("Other");
 
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== router.locale) {
+      router.replace(router.pathname, undefined, { locale: storedLocale });
+    }
+  }, [router]);
+
   const backButton = () => {
+    localStorage.setItem("locale", router.locale || "");
     router.back();
   };
 
@@ -21,7 +28,9 @@ const Int = () => {
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    router.push(router.pathname, undefined, { locale: event.target.value });
+    const newLocale = event.target.value;
+    localStorage.setItem("locale", newLocale);
+    router.replace(router.pathname, undefined, { locale: newLocale });
   };
 
   return (

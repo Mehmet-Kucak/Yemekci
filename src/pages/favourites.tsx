@@ -50,6 +50,13 @@ const Favourites = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== router.locale) {
+      router.replace(router.pathname, undefined, { locale: storedLocale });
+    }
+  }, [router]);
+
   const getProducts = async () => {
     setLoading(true);
     setData([]);
@@ -300,7 +307,10 @@ const Favourites = () => {
         onLocationClick={() => {
           router.push("/");
         }}
-        onFavsClick={() => {}}
+        onFavsClick={() => {
+          setSelectedProduct(-1);
+          setSelectedPlace(-1);
+        }}
         onIntClick={() => {
           router.push("/int");
         }}

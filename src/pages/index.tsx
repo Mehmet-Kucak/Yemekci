@@ -54,6 +54,13 @@ const Home = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== router.locale) {
+      router.replace(router.pathname, undefined, { locale: storedLocale });
+    }
+  }, [router]);
+
   const getProducts = async () => {
     if (navigator.geolocation) {
       try {
@@ -363,7 +370,10 @@ const Home = () => {
       </main>
       <BottomNavbar
         active={0}
-        onHomeClick={() => {}}
+        onHomeClick={() => {
+          setSelectedProduct(-1);
+          setSelectedPlace(-1);
+        }}
         onSearchClick={() => {
           router.push("/search");
         }}
