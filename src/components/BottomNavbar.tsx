@@ -6,11 +6,11 @@ interface BottomNavbarProps {
   onHomeClick: () => void;
   onSearchClick: () => void;
   onLocationClick: () => void;
-  onEUClick: () => void;
+  onIntClick: () => void;
   onFavsClick: () => void;
 }
 
-const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearchClick, onLocationClick, onEUClick, onFavsClick }) => {
+const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearchClick, onLocationClick, onIntClick, onFavsClick }) => {
   return (
     <nav className={styles.bottomNavbar}>
       <button className={`${styles.link} ${active === 0 ? styles.active : ''}`} onClick={onHomeClick}>
@@ -28,8 +28,8 @@ const BottomNavbar: React.FC<BottomNavbarProps> = ({active, onHomeClick, onSearc
       <button className={`${styles.link} ${active === 3 ? styles.active : ''}`} onClick={onFavsClick}>
         <img src="/fullstar_white_icon.svg" alt="favs"/>
       </button>
-      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onEUClick}>
-        <img src="/European_stars.png" alt="EU"/>
+      <button className={`${styles.link} ${active === 4 ? styles.active : ''}`} onClick={onIntClick}>
+        <img src="/language_icon.svg" alt="EU"/>
       </button>
     </nav>
   );

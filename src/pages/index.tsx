@@ -210,7 +210,7 @@ const Home = () => {
 
               <div className={styles.ai}>
                 <h3>{data[selectedProduct].name} Yemeği Hakkında Bilgiler</h3><br/>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore incidunt accusamus voluptatem corporis autem. Delectus, corporis vitae. Aut, consequatur nesciunt. Eligendi ipsum quaerat laboriosam veritatis sit itaque officia iusto iste?</p>
+                <p>Ortaklar Çöpşiş, Türk mutfağının sevilen lezzetlerinden biridir. Kökeni Anadolu'ya dayanan bu yemek, genellikle dana eti veya tavuk eti kullanılarak hazırlanır. Et parçaları, önceden hazırlanan bir marinasyon karışımına batırılarak şişlere dizilir ve ardından mangalda pişirilir. Marinasyon karışımı genellikle yoğurt, zeytinyağı, sarımsak ve çeşitli baharatlardan oluşur. Pişirme sırasında etlerin arası zaman zaman tereyağı ile yağlanır, bu da lezzetini ve suluğunu artırır. Çöpşiş, genellikle közlenmiş domates, biber ve soğanla servis edilirken, yanında pilav, lavaş veya ekmek gibi ek lezzetler de sunulabilir. Bu nefis yemek, Türk mutfağının zengin lezzetlerinden biri olarak mangal partilerinde ve özel günlerde sıkça tercih edilir.</p>
               </div>
               <hr />
               <div className={styles.places_container}>                
@@ -234,7 +234,7 @@ const Home = () => {
               onSearchClick={() => {router.push('/search')}}
               onLocationClick={searchButton} 
               onFavsClick={() => {router.push('/favourites')}}
-              onEUClick={() => {router.push('/eu')}} 
+              onIntClick={() => {router.push('/int')}} 
             />
           </>
         );

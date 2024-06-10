@@ -18,7 +18,7 @@ const PlaceCard: React.FC<PlaceCardProps> = (props) => {
             <div className={styles.info}>
                 <h4>{props.name}</h4>
                 <div className={styles.star} >
-                    <img src="/star_icon.svg" alt="" />
+                    <img src="/fullstar_icon.svg" alt="" />
                     <span>{props.stars}({props.reviews})</span>
                 </div>
             </div>

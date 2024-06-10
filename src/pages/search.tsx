@@ -236,7 +236,7 @@ const Search = () => {
               onSearchClick={() => {}}
               onLocationClick={searchButton} 
               onFavsClick={() => {router.push('/favourites')}}
-              onEUClick={() => {router.push('/eu')}} 
+              onIntClick={() => {router.push('/int')}} 
             />
           </>
         );
