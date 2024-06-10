@@ -4,10 +4,14 @@ import BottomNavbar from '@components/BottomNavbar';
 import { useRouter } from 'next/router';
 import styles from '@styles/Int.module.css';
 
-
-const Favourites = () => {
+const Favourites = ({data}) => {
   const  [lang, setLang] = useState('tr');
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(router.locales, router.locale, router.defaultLocale)
+    console.log(data)
+  }, []);
 
   const backButton = () => {
     router.back();
@@ -31,12 +35,17 @@ const Favourites = () => {
       <button className={styles.header_button} onClick={profileButton}><img src="/person_icon.png" alt="" /></button>
   </header>
   <main className={styles.main}>
-    <h1 className={styles.title}>Choose Language</h1>
-    {/*<select id="Cities" name="Cities" className={styles.city_dropdown} onChange={onCityChange}>
-                {cityData.map((city, index) => {
-                    return(<option value={city.id} key={index}>{city.name}</option>)
-                }, [])}
-      </select>*/}
+    <h1 className={styles.title}>Choose Apps Language</h1>
+    <br/>
+    {<select id="Languages" name="Languages" className={styles.city_dropdown} >
+      <option value={"TR"}>Türkçe</option>
+      <option value={"EN"}>English</option>
+      <option value={"DE"}>Deutsch</option>
+      <option value={"FR"}>Français</option>
+      <option value={"ES"}>Español</option>
+      <option value={"EL"}>Ελληνικά</option>
+      <option value={"RU"}>Русский</option>
+    </select>}
   </main>
   <BottomNavbar 
       active={3}
@@ -50,3 +59,17 @@ const Favourites = () => {
 }
 
 export default Favourites
+
+export const getServerSideProps = async (context) => {
+  const { locale } = context;
+  console.log(context);
+  const res = await fetch(`http://localhost:3000/${locale}`);
+  console.log(res);
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
