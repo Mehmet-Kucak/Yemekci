@@ -190,7 +190,7 @@ const Search = () => {
   return (
     <>
       <Head>
-        <title>YemekCİ|Ara</title>
+        <title>Ara</title>
         <meta
           name="description"
           content="Coğrafi işaretlere kolaylıkla ulaşın"
@@ -202,7 +202,7 @@ const Search = () => {
         <button onClick={backButton} className={styles.header_button}>
           <img src="/back_icon.png" alt="" />
         </button>
-        <img src="/YemekCi.png" alt="yemekci" className={styles.logo} />
+        {/* <img src="/YemekCi.png" alt="yemekci" className={styles.logo} /> */}
         <button className={styles.header_button} onClick={profileButton}>
           <img src="/person_icon.png" alt="" />
         </button>
