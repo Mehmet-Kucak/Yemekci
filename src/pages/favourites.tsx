@@ -221,13 +221,13 @@ const Favourites = () => {
                 <hr />
                 <div className={styles.places_container}>
                   <PlaceCard
-                    name="Ortaklar Cop Sis Kofte Kahvalti Gozleme"
+                    name="Kalyon Lazutti Çöpşiş"
                     img="/restaurant_placeholder.jpg"
-                    stars={3.9}
-                    reviews={13}
-                    distance={2.7}
+                    stars={4.4}
+                    reviews={1292}
+                    distance={2.6}
                     on_click={() => {
-                      placeButton(0);
+                      placeButton(3);
                     }}
                   />
                   <PlaceCard
@@ -251,16 +251,6 @@ const Favourites = () => {
                     }}
                   />
                   <PlaceCard
-                    name="Kalyon Lazutti Çöpşiş"
-                    img="/restaurant_placeholder.jpg"
-                    stars={4.4}
-                    reviews={1292}
-                    distance={2.6}
-                    on_click={() => {
-                      placeButton(3);
-                    }}
-                  />
-                  <PlaceCard
                     name="Park Çöp Şiş"
                     img="/restaurant_placeholder.jpg"
                     stars={4.0}
@@ -268,6 +258,16 @@ const Favourites = () => {
                     distance={1.2}
                     on_click={() => {
                       placeButton(4);
+                    }}
+                  />
+                  <PlaceCard
+                    name="Ortaklar Cop Sis Kofte Kahvalti Gozleme"
+                    img="/restaurant_placeholder.jpg"
+                    stars={3.9}
+                    reviews={13}
+                    distance={2.7}
+                    on_click={() => {
+                      placeButton(0);
                     }}
                   />
                   <PlaceCard
