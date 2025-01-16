@@ -29,6 +29,7 @@
 
 .ci_logo {
   width: 15%;
+  aspect-ratio: 1;
 }
 
 .main {
