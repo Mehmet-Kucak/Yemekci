@@ -195,7 +195,7 @@ const Home = () => {
         <button onClick={backButton} className={styles.header_button}>
           <img src="/back_icon.png" alt="" />
         </button>
-        {/* <img src="/YemekCi.png" alt="yemekci" className={styles.logo} /> */}
+        {/**<img src="/YemekCi.png" alt="yemekci" className={styles.logo} />**/}
         <button className={styles.header_button} onClick={profileButton}>
           <img src="/person_icon.png" alt="" />
         </button>
@@ -203,6 +203,7 @@ const Home = () => {
       <main className={styles.main}>
         {selectedProduct === -1 && selectedPlace === -1 && (
           <>
+            <img src="/ci_logo.png" className={styles.ci_logo} />
             {data.length === 0 ? (
               <h2 className={styles.title}>
                 <span>{t("title")}</span>
